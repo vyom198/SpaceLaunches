@@ -1,0 +1,31 @@
+package com.example.spacelaunches.data.model
+
+data class Agency_dto(
+    val abbrev: String,
+    val administrator: String,
+    val attempted_landings: Int,
+    val consecutive_successful_landings: Int,
+    val consecutive_successful_launches: Int,
+    val country_code: String,
+    val description: String,
+    val failed_landings: Int,
+    val failed_launches: Int,
+    val featured: Boolean,
+    val founding_year: String,
+    val id: Int,
+    val image_url: String,
+    val info_url: String,
+    val launch_library_url: String,
+    val launchers: String,
+    val logo_url: String,
+    val name: String,
+    val nation_url: String,
+    val pending_launches: Int,
+    val spacecraft: String,
+    val successful_landings: Int,
+    val successful_launches: Int,
+    val total_launch_count: Int,
+    val type: String,
+    val url: String,
+    val wiki_url: String
+)
