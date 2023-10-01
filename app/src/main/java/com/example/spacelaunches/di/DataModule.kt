@@ -5,6 +5,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.spacelaunches.data.local.LaunchDao
 import com.example.spacelaunches.data.local.LaunchDb
+import com.example.spacelaunches.data.local.RemoteKeyDao
 import com.example.spacelaunches.data.remote.LaunchRemoteMediator
 import com.example.spacelaunches.data.remote.SpaceapiInterface
 import com.example.spacelaunches.data.repo.LaunchRepo
@@ -43,6 +44,13 @@ object DataModule {
     fun provideLaunchDao (launchDb: LaunchDb):LaunchDao{
         return launchDb.launchDao()
     }
+    @Provides
+    @Singleton
+    fun provideremoteDao ( launchDb: LaunchDb):RemoteKeyDao{
+        return launchDb.getRemotedao()
+    }
+
+
     @Provides
     @Singleton
     fun provideRemotelaunchMediator (launchDb: LaunchDb,api:SpaceapiInterface )

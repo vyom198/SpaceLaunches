@@ -3,6 +3,7 @@ package com.example.spacelaunches.presentation.viewmodel
 import android.os.CountDownTimer
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,25 +24,39 @@ class CountdownViewmodel : ViewModel() {
     var netMillis by mutableStateOf(0L)
         private set
 
-     var timeLeft = mutableStateOf(netMillis)
-         private set
+
     val countDownInterval = 1000L
 
-    var timerText = mutableStateOf(timeLeft.value.timeFormat())
-        private set
-    var isPlaying = mutableStateOf(false)
+    var timerText = mutableStateOf(netMillis.timeFormat())
         private set
 
+    var days by mutableStateOf("0")
+        private set
+    var hours by mutableStateOf("0")
+        private set
+    var minutes by mutableStateOf("0")
+        private set
+
+    var seconds by mutableStateOf("0")
+        private set
+
+    var isPlaying = mutableStateOf(false)
+        private set
+    var list = mutableListOf<String>()
     fun startCountdown(netTime: String) {
         netMillis = getTimeDifferenceInMillis(netTime)
-        timeLeft.value = netMillis
+         list = netMillis.timeFormat().split(":") as MutableList<String>
+        days = list[0]
+        hours =list[1]
+        minutes = list[2]
+        seconds = list[3]
         isPlaying.value = true
         viewModelScope.launch {
 
-            countDownTimer =  object : CountDownTimer(timeLeft.value, countDownInterval) {
+            countDownTimer =  object : CountDownTimer(netMillis, countDownInterval) {
                 override fun onTick(currentTimeLeft: Long) {
                     timerText.value = currentTimeLeft.timeFormat()
-                    timeLeft.value = currentTimeLeft
+                    netMillis= currentTimeLeft
                 }
 
                 override fun onFinish() {

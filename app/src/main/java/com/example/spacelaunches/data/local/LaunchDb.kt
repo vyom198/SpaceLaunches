@@ -7,8 +7,8 @@ import com.example.spacelaunches.data.converters.Converters
 import com.example.spacelaunches.data.model.LaunchServiceProvider_dto
 
 @Database(
-    entities = [LaunchEntity::class],
-     version = 2
+    entities = [LaunchEntity::class,RemoteKey::class],
+     version = 3
 )
 @TypeConverters(
     Converters::class
@@ -17,4 +17,5 @@ import com.example.spacelaunches.data.model.LaunchServiceProvider_dto
 
  {
     abstract  fun launchDao (): LaunchDao
+    abstract fun   getRemotedao ():RemoteKeyDao
 }
