@@ -29,46 +29,19 @@ import javax.inject.Inject
 class Upcomingviewmodel @Inject constructor(
 private val launchRepo: LaunchRepo
 ):ViewModel() {
-    private val _timeRemaining = MutableStateFlow(0L)
-    private val _days = MutableStateFlow(0L)
-    val days: StateFlow<Long> = _days
 
-    private val _hours =  MutableStateFlow(0L)
-    val hours: StateFlow<Long> = _hours
-
-    private val _minutes =  MutableStateFlow(0L)
-    val minutes: StateFlow<Long> = _minutes
-
-    private val _seconds =  MutableStateFlow(0L)
-    val seconds: StateFlow<Long> = _seconds
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
-     val pager =
+    val pager =
          launchRepo.getUpcomingLaunches().map {
           it.map {
              it.toLauchUpcomingLauch()
           }
       }.cachedIn(viewModelScope)
 
-    fun startCountdown(netTime: String) {
-        val netDate = dateFormat.parse(netTime)
-        val netMillis = netDate?.time ?: 0L
 
-        viewModelScope.launch {
-            _timeRemaining.value = maxOf(netMillis - System.currentTimeMillis(), 0L)
-
-             _days.value = TimeUnit.MILLISECONDS.toDays(_timeRemaining.value)
-            _timeRemaining.value -= TimeUnit.DAYS.toMillis(_days.value)
-            _hours.value = TimeUnit.MILLISECONDS.toHours(_timeRemaining.value)
-            _timeRemaining.value -= TimeUnit.HOURS.toMillis(_hours.value)
-            _minutes.value = TimeUnit.MILLISECONDS.toMinutes(_timeRemaining.value)
-            _timeRemaining.value -= TimeUnit.MINUTES.toMillis(_minutes.value)
-            _seconds.value = TimeUnit.MILLISECONDS.toSeconds(_timeRemaining.value)
-
-        }
     }
 
 
 
 
-}
+
 
