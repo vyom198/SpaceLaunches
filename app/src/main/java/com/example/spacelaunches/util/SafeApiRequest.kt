@@ -1,7 +1,6 @@
 package com.example.spacelaunches.util
 
 import android.util.Log
-import okio.IOException
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Response
