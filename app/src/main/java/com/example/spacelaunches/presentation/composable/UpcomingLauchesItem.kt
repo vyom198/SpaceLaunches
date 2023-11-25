@@ -14,6 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Chip
 import androidx.compose.material.ChipDefaults
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -26,6 +27,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -40,11 +42,10 @@ import java.util.Locale
 fun LaunchItem(
     lauches : UpcomingLaunches,
     modifier :Modifier = Modifier,
-    viewmodel:Upcomingviewmodel
 ) {
 Card(
  modifier = modifier
-     .padding(5.dp)
+     .padding(8.dp)
      .height(400.dp)
      .fillMaxWidth(),
 
@@ -92,6 +93,7 @@ Card(
       Spacer(modifier = Modifier.height(4.dp))
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
+         verticalArrangement = Arrangement.Center,
 
         modifier = Modifier.fillMaxWidth()
             ){
@@ -100,7 +102,8 @@ Card(
             text = lauches.name.toString(),
             maxLines = 1,
             fontStyle = FontStyle.Normal,
-            fontWeight = FontWeight.Bold, fontSize = 18.sp
+            fontWeight = FontWeight.Bold, fontSize = 18.sp,
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(4.dp))
 
@@ -108,7 +111,8 @@ Card(
             text = lauches.launch_service_provider?.name.toString(),
             maxLines = 1,
             fontStyle = FontStyle.Normal,
-            fontWeight = FontWeight.SemiBold, fontSize = 17.sp
+            fontWeight = FontWeight.SemiBold, fontSize = 17.sp,
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(4.dp))
 
@@ -116,18 +120,22 @@ Card(
             text = lauches.pad?.location?.name.toString(),
             maxLines = 1,
             fontStyle = FontStyle.Normal,
-            fontWeight = FontWeight.Medium, fontSize = 17.sp
+            fontWeight = FontWeight.Medium, fontSize = 17.sp,
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(6.dp))
-        CountDown( netTime = lauches.net.toString() )
 
-        Spacer(modifier = Modifier.height(6.dp))
         Text(
-            text =formattedDate,
+            text = "Launche date : ${formattedDate}",
             maxLines = 1,
             fontStyle = FontStyle.Normal,
-            fontWeight = FontWeight.Medium, fontSize = 13.sp
+            fontWeight = FontWeight.Medium, fontSize = 15.sp
         )
+        Spacer(modifier = Modifier.height(6.dp))
+        Button(onClick = { /*TODO*/ }) {
+            Text(text = "Set To Remainder")
+        }
+        
     }
 
     

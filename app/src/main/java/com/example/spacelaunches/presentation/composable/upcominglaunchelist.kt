@@ -103,7 +103,7 @@ fun launchList(
                     items(pagingdata.itemCount){
                         val launchItem = pagingdata[it]
                         if (launchItem != null) {
-                            LaunchItem(lauches = launchItem, viewmodel = viewModel)
+                            LaunchItem(lauches = launchItem)
                         }
                     }
 
