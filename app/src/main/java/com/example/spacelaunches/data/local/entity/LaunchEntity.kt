@@ -1,4 +1,4 @@
-package com.example.spacelaunches.data.local
+package com.example.spacelaunches.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -11,9 +11,8 @@ import com.example.spacelaunches.data.model.Rocket_dto
 import com.example.spacelaunches.data.model.Status_dto
 @Entity(tableName = "launchentity")
 data class LaunchEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id1 : Int = 0,
-    val id: String?,
+    @PrimaryKey(autoGenerate = false)
+    val id: String,
     val image: String?,
     val last_updated: String?,
     val launch_service_provider: LaunchServiceProvider_dto?,

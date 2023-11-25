@@ -7,7 +7,7 @@ import com.example.spacelaunches.data.model.Pad_dto
 import com.example.spacelaunches.data.model.Status_dto
 
 data class UpcomingLaunches(
-    val id: String?,
+    val id: String,
     val image: String?,
     val last_updated: String?,
     val launch_service_provider: LaunchServiceProvider_dto?,
@@ -18,7 +18,8 @@ data class UpcomingLaunches(
     val pad: Pad_dto?,
     val status: Status_dto?,
     val window_end: String?,
-    val window_start: String?
+    val window_start: String?,
+    val url : String?
 
 
 )

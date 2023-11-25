@@ -43,13 +43,13 @@ import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import com.example.spacelaunches.domain.model.UpcomingLaunches
-import com.example.spacelaunches.presentation.viewmodel.Upcomingviewmodel
+import com.example.spacelaunches.presentation.states.viewmodel.Upcomingviewmodel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun launchList(
-    viewModel: Upcomingviewmodel = hiltViewModel()
+    viewModel: Upcomingviewmodel
 ) {
     val pagingdata = viewModel.pager.collectAsLazyPagingItems()
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -103,7 +103,7 @@ fun launchList(
                     items(pagingdata.itemCount){
                         val launchItem = pagingdata[it]
                         if (launchItem != null) {
-                            LaunchItem(lauches = launchItem)
+                            LaunchItem(lauches = launchItem, viemodel = viewModel)
                         }
                     }
 

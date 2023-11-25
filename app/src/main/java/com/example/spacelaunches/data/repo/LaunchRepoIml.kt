@@ -1,27 +1,25 @@
 package com.example.spacelaunches.data.repo
 
 
-import android.nfc.tech.MifareUltralight.PAGE_SIZE
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.map
-import com.example.spacelaunches.data.local.LaunchDao
-import com.example.spacelaunches.data.local.LaunchEntity
+import com.example.spacelaunches.data.local.dao.LaunchDao
+import com.example.spacelaunches.data.local.dao.ReminderDao
+import com.example.spacelaunches.data.local.entity.LaunchEntity
+import com.example.spacelaunches.data.local.entity.Reminder
 
 import com.example.spacelaunches.data.remote.LaunchRemoteMediator
-import com.example.spacelaunches.domain.model.UpcomingLaunches
-import com.example.spacelaunches.domain.repostitory.LaunchRepoiml
-import com.example.spacelaunches.util.Resource
+import com.example.spacelaunches.domain.repostitory.LaunchRepo
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class LaunchRepo @Inject constructor(
+class LaunchRepoIml @Inject constructor(
     private val launchDao: LaunchDao,
+
     private  val remoteMediator: LaunchRemoteMediator
-):LaunchRepoiml {
+): LaunchRepo {
     @OptIn(ExperimentalPagingApi::class)
     override fun getUpcomingLaunches():
             Flow<PagingData<LaunchEntity>> {
@@ -32,6 +30,10 @@ class LaunchRepo @Inject constructor(
         ).flow
 
     }
+
+    override suspend fun saveReminder(reminder: Reminder) {
+     launchDao.saveReminder(reminder)
     }
+}
 
 

@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.spacelaunches.R
 import com.example.spacelaunches.domain.model.UpcomingLaunches
-import com.example.spacelaunches.presentation.viewmodel.Upcomingviewmodel
+import com.example.spacelaunches.presentation.states.viewmodel.Upcomingviewmodel
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -42,6 +42,7 @@ import java.util.Locale
 fun LaunchItem(
     lauches : UpcomingLaunches,
     modifier :Modifier = Modifier,
+    viemodel:Upcomingviewmodel
 ) {
 Card(
  modifier = modifier
@@ -132,7 +133,7 @@ Card(
             fontWeight = FontWeight.Medium, fontSize = 15.sp
         )
         Spacer(modifier = Modifier.height(6.dp))
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = {viemodel.setReminder(lauches) }) {
             Text(text = "Set To Remainder")
         }
         

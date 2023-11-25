@@ -4,11 +4,18 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.spacelaunches.data.converters.Converters
-import com.example.spacelaunches.data.model.LaunchServiceProvider_dto
+import com.example.spacelaunches.data.local.dao.LaunchDao
+import com.example.spacelaunches.data.local.dao.ReminderDao
+import com.example.spacelaunches.data.local.dao.RemoteKeyDao
+import com.example.spacelaunches.data.local.entity.LaunchEntity
+
+import com.example.spacelaunches.data.local.entity.Reminder
+import com.example.spacelaunches.data.local.entity.RemoteKey
 
 @Database(
-    entities = [LaunchEntity::class,RemoteKey::class],
-     version = 3
+    entities = [LaunchEntity::class, RemoteKey::class, Reminder::class],
+
+    version = 5
 )
 @TypeConverters(
     Converters::class
@@ -17,5 +24,6 @@ import com.example.spacelaunches.data.model.LaunchServiceProvider_dto
 
  {
     abstract  fun launchDao (): LaunchDao
-    abstract fun   getRemotedao ():RemoteKeyDao
+    abstract fun   getRemotedao (): RemoteKeyDao
+    abstract fun  getReminderdao () :ReminderDao
 }

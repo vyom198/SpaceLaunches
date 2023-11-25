@@ -7,10 +7,9 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.example.spacelaunches.data.local.LaunchDb
-import com.example.spacelaunches.data.local.LaunchEntity
-import com.example.spacelaunches.data.local.RemoteKey
+import com.example.spacelaunches.data.local.entity.LaunchEntity
+import com.example.spacelaunches.data.local.entity.RemoteKey
 import com.example.spacelaunches.data.local.toLaunchEntity
-import com.example.spacelaunches.util.SafeApiRequest
 import com.example.spacelaunches.util.SafeApiRequest.safeApiRequest
 import retrofit2.HttpException
 import java.io.IOException
@@ -72,7 +71,7 @@ class LaunchRemoteMediator @Inject constructor(
                        RemoteKey(
                            prev = prev,
                            next = next,
-                           id = it.id1
+                           id = it.id
                        )
                    )
                }
@@ -92,14 +91,14 @@ class LaunchRemoteMediator @Inject constructor(
     private suspend fun getClosestRemoteKey(state: PagingState<Int, LaunchEntity>): RemoteKey? {
         return state.anchorPosition?.let {
             state.closestItemToPosition(it)?.let {
-                launchDb.getRemotedao().getRemoteKey(it.id1)
+                launchDb.getRemotedao().getRemoteKey(it.id)
             }
         }
     }
 
     private suspend fun getLastKey(state: PagingState<Int, LaunchEntity>): RemoteKey? {
         return state.lastItemOrNull()?.let {
-            launchDb.getRemotedao().getRemoteKey(it.id1)
+            launchDb.getRemotedao().getRemoteKey(it.id)
         }
     }
 

@@ -2,14 +2,17 @@ package com.example.spacelaunches.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.example.spacelaunches.data.local.LaunchDao
+import com.example.spacelaunches.data.local.dao.LaunchDao
 import com.example.spacelaunches.data.local.LaunchDb
-import com.example.spacelaunches.data.local.RemoteKeyDao
+import com.example.spacelaunches.data.local.dao.ReminderDao
+import com.example.spacelaunches.data.local.dao.RemoteKeyDao
 import com.example.spacelaunches.data.remote.LaunchRemoteMediator
 import com.example.spacelaunches.data.remote.SpaceapiInterface
-import com.example.spacelaunches.data.repo.LaunchRepo
-import com.example.spacelaunches.domain.repostitory.LaunchRepoiml
+import com.example.spacelaunches.data.repo.LaunchRepoIml
+import com.example.spacelaunches.data.repo.ReminderRepoIml
+import com.example.spacelaunches.domain.repostitory.LaunchRepo
+import com.example.spacelaunches.domain.repostitory.ReminderRepo
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,16 +44,20 @@ object DataModule {
     }
     @Provides
     @Singleton
-    fun provideLaunchDao (launchDb: LaunchDb):LaunchDao{
+    fun provideLaunchDao (launchDb: LaunchDb): LaunchDao {
         return launchDb.launchDao()
     }
     @Provides
     @Singleton
-    fun provideremoteDao ( launchDb: LaunchDb):RemoteKeyDao{
+    fun provideremoteDao ( launchDb: LaunchDb): RemoteKeyDao {
         return launchDb.getRemotedao()
     }
 
-
+    @Provides
+    @Singleton
+    fun provideReminderDao (launchDb: LaunchDb): ReminderDao {
+        return launchDb.getReminderdao()
+    }
     @Provides
     @Singleton
     fun provideRemotelaunchMediator (launchDb: LaunchDb,api:SpaceapiInterface )
@@ -60,10 +67,18 @@ object DataModule {
     @Provides
     @Singleton
     fun providelaunchRepository(
-       launchDao: LaunchDao,
+        launchDao: LaunchDao,
         remoteMediator: LaunchRemoteMediator
-    ):LaunchRepoiml {
-        return LaunchRepo(launchDao,remoteMediator)
+    ): LaunchRepo {
+        return LaunchRepoIml(launchDao,remoteMediator)
+
+    }
+    @Provides
+    @Singleton
+    fun provideReminderRepo(
+        reminderDao: ReminderDao
+    ): ReminderRepo {
+        return ReminderRepoIml(reminderDao)
 
     }
 }
