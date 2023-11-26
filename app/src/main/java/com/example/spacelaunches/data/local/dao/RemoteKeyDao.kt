@@ -15,6 +15,6 @@ interface RemoteKeyDao {
     suspend fun nukeTable()
 
    @Query("Select * from RemoteKey where id == :id ")
-    suspend fun getRemoteKey(id: kotlin.String): RemoteKey
+    suspend fun getRemoteKey(id: String): RemoteKey
 
 }

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Space Launches</string>
+    <string name="reminders">Reminders</string>
+    <string name="launch_time_passed">Scheduled Time for the Launch has already passed\n</string>
+    <string name="alarm_permission_rationale">To set Launch Reminders Space Launches needs you grant the permission for the same. Kindly click allow and on the next Screen and enable Space Launches to Set Reminders</string>
+    <string name="notification_permission_rationale">To show Notifications Space Launches needs you grant the permission for the same. Kindly click allow and on the next Screen enable Space Launches to Send Notifications</string>
+    <string name="reminder_permission_required">Reminder Permission Required</string>
+    <string name="notification_permission_required">Notification Permission Required</string>
+    <string name="reminder_cancelled_successfully">Reminder Cancelled Successfully</string>
+    <string name="notification_permission_mandatory_rationale">To use this feature You must allow Space Launches to display Notifications</string>
 </resources>

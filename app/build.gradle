@@ -120,4 +120,9 @@ dependencies {
     implementation 'androidx.compose.material:material:1.5.3'
     // compose destinations
 
+
+    //workManager
+    implementation "androidx.work:work-runtime-ktx:2.8.1"
+    implementation "androidx.hilt:hilt-work:1.0.0"
+
 }

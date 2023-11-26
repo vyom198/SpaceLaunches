@@ -40,9 +40,9 @@ import java.util.Locale
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun LaunchItem(
-    lauches : UpcomingLaunches,
+    launches : UpcomingLaunches,
     modifier :Modifier = Modifier,
-    viemodel:Upcomingviewmodel
+    addReminderClicked: (UpcomingLaunches) -> Unit,
 ) {
 Card(
  modifier = modifier
@@ -54,7 +54,7 @@ Card(
  elevation=CardDefaults.cardElevation()
 ) {
 
-    val isoDateString = lauches.net
+    val isoDateString = launches.net
     val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
     val date = isoFormat.parse(isoDateString)
     val outputFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
@@ -66,8 +66,8 @@ Card(
         verticalAlignment = Alignment.CenterVertically
     ) {
         AsyncImage(
-            model = lauches.image,
-            contentDescription = lauches.name,
+            model = launches.image,
+            contentDescription = launches.name,
             modifier = Modifier
                 .weight(1f)
                 .height(200.dp)
@@ -84,7 +84,7 @@ Card(
                     .padding(end = 10.dp),
             colors = ChipDefaults.chipColors(backgroundColor =
             MaterialTheme.colorScheme.onBackground)) {
-            lauches.status?.let { Text(text = it.abbrev ,fontWeight = FontWeight.ExtraBold) }
+            launches.status?.let { Text(text = it.abbrev ,fontWeight = FontWeight.ExtraBold) }
 
         }
 
@@ -100,7 +100,7 @@ Card(
             ){
 
         Text(
-            text = lauches.name.toString(),
+            text = launches.name.toString(),
             maxLines = 1,
             fontStyle = FontStyle.Normal,
             fontWeight = FontWeight.Bold, fontSize = 18.sp,
@@ -109,7 +109,7 @@ Card(
         Spacer(modifier = Modifier.height(4.dp))
 
         Text(
-            text = lauches.launch_service_provider?.name.toString(),
+            text = launches.launch_service_provider?.name.toString(),
             maxLines = 1,
             fontStyle = FontStyle.Normal,
             fontWeight = FontWeight.SemiBold, fontSize = 17.sp,
@@ -118,7 +118,7 @@ Card(
         Spacer(modifier = Modifier.height(4.dp))
 
         Text(
-            text = lauches.pad?.location?.name.toString(),
+            text = launches.pad?.location?.name.toString(),
             maxLines = 1,
             fontStyle = FontStyle.Normal,
             fontWeight = FontWeight.Medium, fontSize = 17.sp,
@@ -133,7 +133,7 @@ Card(
             fontWeight = FontWeight.Medium, fontSize = 15.sp
         )
         Spacer(modifier = Modifier.height(6.dp))
-        Button(onClick = {viemodel.setReminder(lauches) }) {
+        Button(onClick = {addReminderClicked(launches) }) {
             Text(text = "Set To Remainder")
         }
         

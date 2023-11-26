@@ -1,7 +1,6 @@
 package com.example.spacelaunches.util
 
 import android.util.Log
-import okio.IOException
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Response
@@ -17,9 +16,9 @@ object SafeApiRequest {
             val message = StringBuilder()
             responseErr?.let {
                 try {
-                    message.append(JSONObject(it).getString("error"))
+                    message.append(JSONObject(it).getString(it))
                 } catch (e: JSONException) {
-                    message.append("Unknown error")
+                    message.append(e.message)
                 }
             } ?: run {
                 message.append("Response error body is null")
