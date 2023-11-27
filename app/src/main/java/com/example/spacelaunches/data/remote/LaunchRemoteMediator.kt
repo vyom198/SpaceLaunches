@@ -9,7 +9,7 @@ import androidx.room.withTransaction
 import com.example.spacelaunches.data.local.LaunchDb
 import com.example.spacelaunches.data.local.entity.LaunchEntity
 import com.example.spacelaunches.data.local.entity.RemoteKey
-import com.example.spacelaunches.data.local.toLaunchEntity
+import com.example.spacelaunches.util.toLaunchEntity
 import com.example.spacelaunches.util.SafeApiRequest.safeApiRequest
 import retrofit2.HttpException
 import java.io.IOException

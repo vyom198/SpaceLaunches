@@ -1,4 +1,4 @@
-package com.example.spacelaunches
+package com.example.spacelaunches.app
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -33,6 +33,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.spacelaunches.R
 import com.example.spacelaunches.navigation.BottomNavScreen
 import com.example.spacelaunches.presentation.composable.launchList
 import com.example.spacelaunches.presentation.composable.reminderScreen
@@ -72,11 +73,11 @@ class MainActivity : ComponentActivity() {
                         },
                         bottomBar = {
                             NavigationBar {
-                                screens.forEachIndexed { index, item ->
+                                screens.forEach {  item ->
                                     NavigationBarItem(
-                                        selected = selectedItemIndex == index,
+                                        selected = selectedItemIndex == item.id,
                                         onClick = {
-                                            selectedItemIndex = index
+                                            selectedItemIndex = item.id
                                             navController.navigateSingleTopTo(item.route)
                                         },
                                         label = {
@@ -85,7 +86,7 @@ class MainActivity : ComponentActivity() {
                                         alwaysShowLabel = false,
                                         icon = {
                                             Icon(
-                                                    imageVector = if (index == selectedItemIndex) {
+                                                    imageVector = if (item.id == selectedItemIndex) {
                                                         item.selectedIcon
                                                     } else item.unselectedIcon,
                                                     contentDescription = item.name
@@ -115,6 +116,7 @@ class MainActivity : ComponentActivity() {
                                           when (actionTaken) {
                                               SnackbarResult.ActionPerformed -> {
                                                navController.navigateSingleTopTo(BottomNavScreen.Reminder.route)
+                                                  selectedItemIndex = BottomNavScreen.Reminder.id
                                               }
 
                                               else -> {}
@@ -141,6 +143,7 @@ class MainActivity : ComponentActivity() {
                                 reminderScreen(viewModel = hiltViewModel(),
                                     onBackPressed = {
                                         navController.navigateSingleTopTo(BottomNavScreen.Home.route)
+                                        selectedItemIndex = BottomNavScreen.Home.id
                                     }
                                 , reminderCancelled = {
                                         scope.launch {

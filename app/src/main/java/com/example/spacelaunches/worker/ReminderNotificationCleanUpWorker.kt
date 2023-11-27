@@ -57,7 +57,7 @@ class ReminderNotificationCleanUpWorker  @AssistedInject constructor(
           notificationHelper.showNotification(
               channelId = Constants.REMINDER_CHANNEL_ID,
               notificationId = Random.nextInt(),
-              title = "Reminder From Space Dawn",
+              title = "Reminder From Space Launches",
               content = "$launchName mission is about to launch"
           )
       }
