@@ -1,4 +1,4 @@
-package com.example.spacelaunches.data.local
+package com.example.spacelaunches.util
 
 import com.example.spacelaunches.data.local.entity.LaunchEntity
 import com.example.spacelaunches.data.local.entity.Reminder

@@ -4,12 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.example.spacelaunches.data.local.entity.Reminder
-import com.example.spacelaunches.data.local.toLauchUpcomingLauch
-import com.example.spacelaunches.data.local.toReminder
+import com.example.spacelaunches.util.toLauchUpcomingLauch
+import com.example.spacelaunches.util.toReminder
 import com.example.spacelaunches.data.repo.LaunchRepoIml
 import com.example.spacelaunches.domain.model.UpcomingLaunches
-import com.example.spacelaunches.domain.repostitory.LaunchRepo
 import com.example.spacelaunches.domain.usecases.SetReminderUsecase
 import com.example.spacelaunches.util.Constants
 import com.example.spacelaunches.util.Resource

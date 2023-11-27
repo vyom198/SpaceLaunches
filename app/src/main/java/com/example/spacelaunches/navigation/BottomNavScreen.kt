@@ -9,6 +9,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class BottomNavScreen(
     val name : String,
+    val id : Int ,
     val route : String,
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector,
@@ -18,6 +19,7 @@ sealed class BottomNavScreen(
         route= "home",
         selectedIcon = Icons.Filled.Home,
         unselectedIcon = Icons.Outlined.Home,
+        id = 1
 
     )
     object Reminder : BottomNavScreen(
@@ -25,7 +27,7 @@ sealed class BottomNavScreen(
         route= "reminders",
         selectedIcon = Icons.Filled.Notifications,
         unselectedIcon = Icons.Outlined.Notifications,
-
+        id = 2
     )
 
 }

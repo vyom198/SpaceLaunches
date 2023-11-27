@@ -7,7 +7,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
-import com.example.spacelaunches.MainActivity
+import com.example.spacelaunches.app.MainActivity
 import com.example.spacelaunches.R
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject

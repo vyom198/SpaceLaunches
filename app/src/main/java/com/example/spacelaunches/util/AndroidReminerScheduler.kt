@@ -8,9 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.compose.material.ScrollableTabRow
 import androidx.core.content.ContextCompat
-import androidx.core.os.BuildCompat
 import com.example.spacelaunches.R
 import com.example.spacelaunches.broadcastReciver.ReminderBroadcastReceiver
 import com.example.spacelaunches.data.local.entity.Reminder
@@ -143,6 +141,7 @@ class AndroidReminerScheduler @Inject constructor(
 //        } else {
 //            System.currentTimeMillis() + 10_000
 //        }
+
        val reminderTime = launchTime-Constants.TEN_MINUTES_IN_MILLIS
         return if (launchTime < System.currentTimeMillis()) {
             context.getString(R.string.launch_time_passed)

@@ -1,4 +1,4 @@
-package com.example.spacelaunches
+package com.example.spacelaunches.app
 
 import android.app.Application
 import android.app.NotificationChannel
