@@ -66,6 +66,8 @@ Install the latest version of Android Studio and Clone this repository by follow
 ## Api Used
 ### 🚀  The app uses [Launch Library 2](https://thespacedevs.com/llapi) API for getting upcoming Rocket Launches.
 
+## LICENSE
+[MIT](https://github.com/vyom198/SpaceLaunches/blob/master/LICENSE.md)
 
 
 
