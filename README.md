@@ -33,3 +33,49 @@ Install the latest version of Android Studio and Clone this repository by follow
 <br>
 
 
+
+
+
+##  Screenshots (Dark and Light Theme)
+### Light Theme
+
+<img src="https://github.com/vyom198/SpaceLaunches/assets/112750331/f576a1dc-baac-4df8-825e-925bc3a8c865"  width="200">
+<img src="https://github.com/vyom198/SpaceLaunches/assets/112750331/9fae47c2-d945-444c-b5a9-80aed936a6bc"  width="200">
+<img src="https://github.com/vyom198/SpaceLaunches/assets/112750331/f4ace75c-0ee7-4d1d-84bc-b6f9bdbb9940"  width="200">
+<img src="https://github.com/vyom198/SpaceLaunches/assets/112750331/14153aa9-7ea5-4745-b728-59709af04134"  width="200">
+
+
+### Dark Theme
+
+<img src="https://github.com/vyom198/SpaceLaunches/assets/112750331/a7a1b8a1-b01d-43c7-8833-272a6dd1b4e5"  width="200">
+<img src="https://github.com/vyom198/SpaceLaunches/assets/112750331/d795bfdc-d380-43d8-942d-fce635cf26c8"  width="200">
+<img src="https://github.com/vyom198/SpaceLaunches/assets/112750331/8d2e8fcf-a72d-4e15-956b-0f2772907b0a"  width="200">
+<img src="https://github.com/vyom198/SpaceLaunches/assets/112750331/88602b77-39b4-4f52-9f4e-e4a0432f7bcb"  width="200">
+
+
+## Features
+
+* Fetching data of upcoming rocket Launches
+* showing status of upcoming Launches , and space 
+  Agency , launch pad , mission name, location    and launch date
+*  setting reminder for particular rocket launch
+* cancelling the reminder
+* getting paginated data and caching in local database for offline experience
+* showing notification before launching of rocket
+
+## Api Used
+### 🚀  The app uses [Launch Library 2](https://thespacedevs.com/llapi) API for getting upcoming Rocket Launches.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
