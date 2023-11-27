@@ -37,6 +37,7 @@ import com.example.spacelaunches.navigation.BottomNavScreen
 import com.example.spacelaunches.presentation.composable.launchList
 import com.example.spacelaunches.presentation.composable.reminderScreen
 import com.example.spacelaunches.ui.theme.SpaceLaunchesTheme
+import com.example.spacelaunches.util.Helpers.Companion.navigateSingleTopTo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -76,7 +77,7 @@ class MainActivity : ComponentActivity() {
                                         selected = selectedItemIndex == index,
                                         onClick = {
                                             selectedItemIndex = index
-                                            navController.navigate(item.route)
+                                            navController.navigateSingleTopTo(item.route)
                                         },
                                         label = {
                                             Text(text = item.name)
@@ -101,7 +102,7 @@ class MainActivity : ComponentActivity() {
                         )
                         NavHost(navController = navController,   modifier =Modifier.padding(it),
                             startDestination = BottomNavScreen.Home.route){
-                            composable(BottomNavScreen.Home.route){
+                            composable(BottomNavScreen.Home.route,){
                                 launchList( viewModel = hiltViewModel(),
                                     reminderSetSuccessfully = {
                                       scope.launch {
@@ -113,12 +114,15 @@ class MainActivity : ComponentActivity() {
                                           )
                                           when (actionTaken) {
                                               SnackbarResult.ActionPerformed -> {
-                                               navController.navigate(BottomNavScreen.Reminder.route)
+                                               navController.navigateSingleTopTo(BottomNavScreen.Reminder.route)
                                               }
 
                                               else -> {}
                                           }
                                       }
+                                    },
+                                    systemBootClicked = {
+                                          activity?.finish()
                                     },
                                     reminderNotSet = {
                                         scope.launch {
@@ -134,7 +138,10 @@ class MainActivity : ComponentActivity() {
                                 val snackBarMessage by rememberUpdatedState(
                                     newValue = stringResource(R.string.reminder_cancelled_successfully)
                                 )
-                                reminderScreen(viewModel = hiltViewModel(),navController
+                                reminderScreen(viewModel = hiltViewModel(),
+                                    onBackPressed = {
+                                        navController.navigateSingleTopTo(BottomNavScreen.Home.route)
+                                    }
                                 , reminderCancelled = {
                                         scope.launch {
                                             snackbarHostState.showSnackbar(
