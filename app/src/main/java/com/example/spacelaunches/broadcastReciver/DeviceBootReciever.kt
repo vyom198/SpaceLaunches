@@ -8,14 +8,20 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.spacelaunches.util.Constants
 import com.example.spacelaunches.worker.DeviceBootReminderWorker
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class DeviceBootReciever :BroadcastReceiver() {
 
     @Inject
     lateinit var workManager: WorkManager
 
-
+//    @Inject
+//    lateinit var androidReminderScheduler: ReminderScheduler
+//
+//    @Inject
+//    lateinit var launchesDao: LaunchDao
 
 
     override fun onReceive(p0: Context?, p1: Intent?) {

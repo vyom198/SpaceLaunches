@@ -15,7 +15,7 @@ import com.example.spacelaunches.data.local.entity.RemoteKey
 @Database(
     entities = [LaunchEntity::class, RemoteKey::class, Reminder::class],
 
-    version = 5
+    version = 6
 )
 @TypeConverters(
     Converters::class

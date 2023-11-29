@@ -1,37 +1,20 @@
 package com.example.spacelaunches.app
 
 import android.app.Application
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
-import android.os.Build
+import androidx.hilt.work.HiltWorkerFactory
+import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
 
 @HiltAndroidApp
-class BaseApplication : Application(){
-    companion object{
-        lateinit var notificationManager: NotificationManager
-    }
+class BaseApplication : Application(),Configuration.Provider{
 
-    override fun onCreate() {
-        super.onCreate()
+    @Inject
+    lateinit var workerFactory: HiltWorkerFactory
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationChannel = NotificationChannel(
-                "channel_id",
-                "channel_name",
-                NotificationManager.IMPORTANCE_HIGH
-            )
-            notificationChannel.description = "notification channel desc.."
-            notificationChannel.enableVibration(true)
-            notificationChannel.enableLights(true)
-            notificationChannel.vibrationPattern = longArrayOf(100,200,300,400,300,200,100)
+    override fun getWorkManagerConfiguration(): Configuration =
+        Configuration.Builder().setWorkerFactory(workerFactory).build()
 
-            notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(notificationChannel)
-        } else {
-            notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        }
 
-    }
+
 }

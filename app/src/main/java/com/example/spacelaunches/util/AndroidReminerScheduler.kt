@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.content.ContextCompat
+import com.example.spacelaunches.BuildConfig
 import com.example.spacelaunches.R
 import com.example.spacelaunches.broadcastReciver.ReminderBroadcastReceiver
 import com.example.spacelaunches.data.local.entity.Reminder
@@ -129,20 +130,22 @@ class AndroidReminerScheduler @Inject constructor(
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val launchTime = reminder.net?.toDate(Constants.LAUNCH_DATE_INPUT_FORMAT)!!.time
+        val launchTime = reminder.net.toDate(Constants.LAUNCH_DATE_INPUT_FORMAT).time
 
         // In release mode the reminder will be scheduled for 10 minutes before the
         // launch time.
 
         // In order to test whether the reminder functionality is working
         // reminder is set after 10 seconds from current time in Debug mode
-//        val reminderTime = if () {
-//            launchTime - Constants.TEN_MINUTES_IN_MILLIS
-//        } else {
-//            System.currentTimeMillis() + 10_000
-//        }
 
-       val reminderTime = launchTime-Constants.TEN_MINUTES_IN_MILLIS
+        val reminderTime = if (BuildConfig.DEBUG.not()) {
+            launchTime - Constants.TEN_MINUTES_IN_MILLIS
+
+        } else {
+            System.currentTimeMillis() + 10_000
+        }
+
+
         return if (launchTime < System.currentTimeMillis()) {
             context.getString(R.string.launch_time_passed)
         } else {
